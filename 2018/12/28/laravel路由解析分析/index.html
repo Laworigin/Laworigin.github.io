@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | WisdomTree&#39;s Blog</title>
+  <title>laravel路由解析分析 | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WisdomTree&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="这段时间对laravel的路由解析流程很感兴趣，想要看看在整个路由解析流程中是否存在薄弱环节或者是可利用点。通过网上现有的分析文章对照着自己本地的环境调试了一波。感觉laravel在路由解析这块的安全性确实很高。（也有可能是因为没有太多输入点。。。）等考完试还要继续看看，现在先把我理解的记录下来，以便之后复习使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel路由解析分析">
+<meta property="og:url" content="http://yoursite.com/2018/12/28/laravel路由解析分析/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
+<meta property="og:description" content="这段时间对laravel的路由解析流程很感兴趣，想要看看在整个路由解析流程中是否存在薄弱环节或者是可利用点。通过网上现有的分析文章对照着自己本地的环境调试了一波。感觉laravel在路由解析这块的安全性确实很高。（也有可能是因为没有太多输入点。。。）等考完试还要继续看看，现在先把我理解的记录下来，以便之后复习使用。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/8.png">
+<meta property="og:updated_time" content="2018-12-29T09:19:32.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WisdomTree&#39;s Blog">
+<meta name="twitter:title" content="laravel路由解析分析">
+<meta name="twitter:description" content="这段时间对laravel的路由解析流程很感兴趣，想要看看在整个路由解析流程中是否存在薄弱环节或者是可利用点。通过网上现有的分析文章对照着自己本地的环境调试了一波。感觉laravel在路由解析这块的安全性确实很高。（也有可能是因为没有太多输入点。。。）等考完试还要继续看看，现在先把我理解的记录下来，以便之后复习使用。">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/28/laravel路由解析分析/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WisdomTree&#39;s Blog" type="application/atom+xml">
   
@@ -150,37 +163,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-laravel路由解析分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      laravel路由解析分析
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/laravel路由解析分析/" class="archive-article-date">
+
+        
+        <a href="/2018/12/28/laravel路由解析分析/" class="archive-article-date">
   	<time datetime="2018-12-28T08:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/laravel路由解析分析/">laravel路由解析分析</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这段时间对laravel的路由解析流程很感兴趣，想要看看在整个路由解析流程中是否存在薄弱环节或者是可利用点。通过网上现有的分析文章对照着自己本地的环境调试了一波。感觉laravel在路由解析这块的安全性确实很高。（也有可能是因为没有太多输入点。。。）等考完试还要继续看看，现在先把我理解的记录下来，以便之后复习使用。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="路由加载服务"><a href="#路由加载服务" class="headerlink" title="路由加载服务"></a>路由加载服务</h3><p>在laravel中有一个特有的概念，称之为服务提供者。服务提供者的功能是完成laravel应用的引导启动。我的理解是通过服务提供者RouteServiceProvider可以加载某些已经内置于laravel中的模块。在这里，我们可以把路由加载理解为是一种服务。对应的存在一个服务提供者<code>RouteServiceProvider</code>用于在laravel kernel中加载这一服务。只有在加载之后，我们才能获取已经在<code>routes/web.php</code>文件中注册的路由。laravel框架入口文件是<code>public/index.php</code>，该文件38行加载<code>bootstrap/app.php</code>文件。在<code>bootstrap/app.php</code>中实现laravel中常用服务的注册和启动。由于我们这里主要分析对于外部传入路由的解析，因此不对路由表的加载深入分析。我们只要知道通过包含<code>bootstrap/app.php</code>文件，可以获取当前所有的已注册路由。</p>
+<h3 id="路由解析"><a href="#路由解析" class="headerlink" title="路由解析"></a>路由解析</h3><p>继续看<code>public/index.php</code>文件源码：</p>
+<p><img src="/2018/12/28/laravel路由解析分析/1.png" alt=""></p>
+<p>52行的作用只是实例化<code>Illuminate\Contracts\Http\Kernel</code>这个类。往下走到54行才是我们需要深入研究的重点。<code>$request = Illuminate\Http\Request::capture()</code>这一句代码的作用是返回http请求的一些参数。比如：GET参数，POST参数，FILES参数等等。我们把目光放在<code>$kernel-&gt;handle</code>函数中。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/2.png" alt=""></p>
+<p>在<code>$kernel-&gt;handle</code>函数中，将解析的<code>request</code>传入<code>$this-&gt;sendRequestThroughRouter</code>函数。从<code>$kernel-&gt;handle</code>函数这里开始，我们才算是真正进入路由解析环节。<code>sendRequestThroughRouter</code>源码如下：</p>
+<p><img src="/2018/12/28/laravel路由解析分析/3.png" alt=""></p>
+<p>在<code>sendRequestThroughRouter</code>函数中主要执行三个动作。首先是调用<code>clearResolvedInstance</code>函数清空已解析的请求。其次调用<code>$this-&gt;bootstrap()</code>函数，执行基础应用的引导程序。最后通过<code>Pipeline</code>将请求发送到中间件和路由中。最后一步比较繁琐，感谢前人的分析为我们指明捷径。直接跟入<code>$this-&gt;dispatchToRouter()</code>函数。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/4.png" alt=""></p>
+<p>这里调用<code>Illuminate\Routing\Router</code>的<code>dispatch</code>函数。也就是说将我们的请求扔进<code>Illuminate\Routing\Router</code>进行处理。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/5.png" alt=""></p>
+<p>接下来连续调用的三个函数都在上面的图中。逻辑也不算复杂，在函数<code>$this-&gt;routes-&gt;match</code>中将传入的http请求中的uri和laravel框架加载路由解析服务时获取的路由表进行对比，若存在则返回http请求路由并继续执行<code>$this-&gt;runRoute</code>方法，否则就抛出异常。在核对过路由真实有效后，便调用路由对应控制器。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/6.png" alt=""></p>
+<p>在<code>runRoute</code>方法中调用<code>$this-&gt;runRouteWithinStack</code>。在<code>runRouteWithinStack</code>方法中调用<code>$route-&gt;run</code>。这里的<code>$route</code>就是我们在<code>findRoute</code>方法中找到的路由。跟入<code>run</code>方法。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/7.png" alt=""></p>
+<p>这里先是调用<code>isControllerAction</code>方法判断路由处理函数是否为控制器。我们这里是false。因此直接进入<code>$this-&gt;runCallable()</code>方法。到这一步基本已经接近成功了。在<code>$this-&gt;runCallable()</code>方法中的<code>resolveMethodDependencies</code>和<code>parametersWithoutNulls</code>方法都是用来获取控制器方法的参数并且生成实例对象并注入到控制器方法中。有点像java中的依赖注入。由于我这里使用的是默认路由，控制器方法是一个匿名方法。导致下一步直接就进入匿名方法中。</p>
+<p><img src="/2018/12/28/laravel路由解析分析/8.png" alt=""></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>整体的路由解析流程就是这样。跟踪下来还是觉得laravel是一个相当成熟的框架，路由解析流程并没有明显的漏洞。laravel在路由解析这块也做了验证，保证用户只能调用已经注册的路由相对应的控制器。并且很难去绕过这一个验证。只能说在路由验证之前或者是在路由加载服务这个环节进行污染。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -193,200 +247,104 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/11/js原型链污染/" class="archive-article-date">
-  	<time datetime="2018-09-11T12:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/js原型链污染/">js原型链污染</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/" class="archive-article-date">
-  	<time datetime="2018-04-22T15:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/">Discuz_x_portal_Stored_XSS(CVE-2018-10298)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/04/Summary-of-PHP-code-audit-experience/" class="archive-article-date">
-  	<time datetime="2018-04-04T15:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/04/Summary-of-PHP-code-audit-experience/">Summary of PHP code audit experience</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/" class="archive-article-date">
-  	<time datetime="2018-03-30T15:18:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/">CVE-2018-9134-Dedecms-background-file-rename</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/" class="archive-article-date">
-  	<time datetime="2018-03-07T13:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/">CVE-2018-7700 dedecms后台任意代码执行</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/31/2017-END/" class="archive-article-date">
-  	<time datetime="2017-12-30T16:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/31/2017-END/">2017 END</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/28/laravel路由解析分析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/11/js原型链污染/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js原型链污染</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -409,8 +367,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
