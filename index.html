@@ -152,6 +152,125 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-s2-045-调试分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/11/s2-045-调试分析/">s2-045 调试分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/11/s2-045-调试分析/" class="archive-article-date">
+  	<time datetime="2019-01-11T05:41:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。</p>
+</blockquote>
+<h3 id="ognl表达式基础"><a href="#ognl表达式基础" class="headerlink" title="ognl表达式基础"></a>ognl表达式基础</h3><p>1、ognl作用<br>  （1）支持对象方法的调用，如：<code>(#cmd={&#39;/bin/bash&#39;,&#39;-c&#39;,&#39;whoami&#39;})(#p=new java.lang.ProcessBuilder(#cmd))</code>。<br>  （2）支持类的静态方法的调用和静态属性的访问，如：<code>@java.lang.Runtime@getRuntime().exec(&#39;whoami&#39;)</code>。<br>  （3）支持赋值操作和表达式串联。这使得我们可以利用ognl表达式“编写”一段程序。  </p>
+<p>2、ognl三大要素<br>  （1）上下文（Context对象）<br>在ognl表达式中不可避免的要使用上下文环境这一概念。网上各种官方的解释很多，我在这里就以我的理解来阐述。所谓的上下文环境，我的理解就是一个用于解析并且执行ognl表达式的环境。所有的ognl表达式都需要在上下文环境中才能解析执行。<br>  （2）表达式<br>表达式是ognl的灵魂。所有的取值，赋值，以及我们所构造的payload都是以ognl表达式的形式呈现。这里也简单记录ognl的语法。在ognl中有三个符号经常使用，分别是#,%和$。#符号主要用途有三：访问非根对象（<code>#user.id</code>），用于过滤和投影（<code>books.{?#this.price&gt;35}</code>）以及构造Map（<code>#{&#39;foo1&#39;:&#39;bar1&#39;, &#39;foo2&#39;:&#39;bar2&#39;}</code>）。%符号是用于在标签属性中表明<code>%{}</code>内部的字符串被当作ognl来解析。$符号有两个用途：在国际化资源文件中，引用OGNL表达式、在Struts 2配置文件中，引用OGNL表达式。<br>  （3）根对象<br>根对象可以理解为ognl所面向的对象。ognl表达式对根对象进行操作。以任意一个对象为根，通过OGNL可以访问与这个对象关联的其它对象。</p>
+<p>3、小结<br>如果把context对象看作是一个执行环境，那么表达式就是我们的逻辑代码，根对象和非根对象就是我们的变量。这里还有一点需要提一下，只有访问非根对象时才需要使用<code>#</code>。访问根对象不用井号。ognl表达式的解析依赖于<code>Ognl.parseExpression</code>方法，ognl表达式经过解析之后返回一个对象，接下来调用<code>Ognl.getValue</code>方法执行表达式的内容。<code>Ognl.getValue</code>方法使用语法：<code>Ognl.getValue(object,content,root_object)</code>。</p>
+<p>说了这么多，最主要的还是如何使用ognl实现命令执行。我参照网上现有的payload自己也写了一个:<code>(#a=@java.lang.Runtime@getRuntime().exec(&#39;whoami&#39;)).(#b=#a.getInputStream()).(#c=new java.io.InputStreamReader(#b)).(#d=new java.io.BufferedReader(#c)).(#e=#d.readLine())</code></p>
+<p>这条paylaod并不完善，没有做回显也没有做bypass，仅供自己学习使用。</p>
+<h3 id="s2-045漏洞简介"><a href="#s2-045漏洞简介" class="headerlink" title="s2-045漏洞简介"></a>s2-045漏洞简介</h3><p>struct2原本的设计初衷是在处理报头为<code>Content-Type:multipart/form-data</code>调用Jakarta解析器。初衷没有错，可是在我看来整个漏洞环节最致命之处就在于获取<code>Content-Type</code>的值这一步。居然使用的是<code>contains</code>方法。。。。。换句话说只要<code>Content-Type</code>的值中存在<code>multipart/form-data</code>字符串都将调用Jakarta解析器进行处理。这才导致后面引入ognl表达式。</p>
+<h3 id="s2-045调试分析"><a href="#s2-045调试分析" class="headerlink" title="s2-045调试分析"></a>s2-045调试分析</h3><p>struct2版本：struct2.3.28<br>使用的payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#_=&apos;multipart/form-data&apos;).(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=&apos;whoami&apos;).(#iswin=(@java.lang.System@getProperty(&apos;os.name&apos;).toLowerCase().contains(&apos;win&apos;))).(#cmds=(#iswin?&#123;&apos;cmd.exe&apos;,&apos;/c&apos;,#cmd&#125;:&#123;&apos;/bin/bash&apos;,&apos;-c&apos;,#cmd&#125;)).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())&#125;</span><br></pre></td></tr></table></figure>
+<p>我们从拦截器<code>org/apache/struts2/dispatcher/Dispatcher.class</code>开始跟踪，我们在<code>wrapRequest</code>方法中下断点。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/1.png" alt=""></p>
+<p>第一个框处，我们只要在<code>Content-Type</code>中传入<code>multipart/form-data</code>字符串即可满足。第二个框表明struct2默认调用jakarta解析器解析<code>Content-Type:multipart/form-data</code>数据包。我们跟入<code>MultiPartRequestWrapper</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/2.png" alt=""></p>
+<p>继续跟入<code>this.multi.parse</code>方法：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/3.png" alt=""></p>
+<p>在<code>parse</code>方法中<code>this.processUpload</code>方法触发异常，在下面捕获到该异常。并且将异常信息传入<code>this.buildErrorMessage</code>方法。捕获的异常信息如下:</p>
+<p><img src="/2019/01/11/s2-045-调试分析/4.png" alt=""></p>
+<p>可以看到主要描述就是<code>Content-Type</code>异常，但是最恐怖的地方就在于，这里直接获取<code>Content-Type</code>中的所有内容。如果是在做污点分析的话，这妥妥的就是一个污点呀。我们继续往下走，跟入<code>this.buildErrorMessage</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/5.png" alt=""></p>
+<p>这里的<code>e.getMessage()</code>就是获取我们上一张图的报错信息，其中就有构造的payload。跟进<code>LocalizedTextUtil.findText</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/6.png" alt=""></p>
+<p>这里继续将<code>defaultMessage</code>传入<code>findText</code>方法中继续跟入：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/7.png" alt=""></p>
+<p>跟进<code>getDefaultMessage</code>方法：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/8.png" alt=""></p>
+<p>这里将我们的<code>defaultMessage</code>赋值给<code>message</code>继续将<code>message</code>传入<code>TextParseUtil.translateVariables</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/9.png" alt=""></p>
+<p>连续步入三个方法就能进入真正的<code>translateVariables</code>方法。看到这个方法的名字就容易让人兴奋<code>parser.evaluate</code>。看名字就知道不是什么正经方法，肯定能解析某些东西。并且我们的<code>expression</code>还传入其中。继续跟进。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/10.png" alt=""></p>
+<p><code>parser.evaluate</code>方法前面半段代码的作用主要是取出<code>%{}</code>或<code>${}</code>的内容，将其作为ognl表达式传入<code>evaluator.evaluate</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/11.png" alt=""></p>
+<p>这里是让我困扰了很久。我一开始一直以为是在<code>evaluator.evaluate</code>方法中解析ognl表达式。而且网上很多分析也就到此为止了。并没有说具体在哪一个方法中解析。后来在调试的过程中发现，其实是在<code>stack.findValue</code>方法中解析ognl表达式。我们跟入<code>stack.findValue</code>方法。连续步入两次就能看到以下方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/12.png" alt=""></p>
+<p>继续跟入<code>tryFindValueWhenExpressionIsNotNull</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/13.png" alt=""></p>
+<p>哦！看到<code>getValue</code>方法了！很兴奋，继续跟！</p>
+<p><img src="/2019/01/11/s2-045-调试分析/14.png" alt=""></p>
+<p>继续往下走：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/15.png" alt=""></p>
+<p>finally！！！看到了<code>Ognl.getValue</code>，并且我们构造的payload传入其中。成功解析ognl表达式。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>实际上也未必要像我这样从头跟到尾。我是跟踪到最后ognl表达式如何被解析。有的师傅在分析过程中也提到了：translateVariables()方法继承接口com.opensymphony.xwork2.util.TextParseUtil.ParsedValueEvaluator<br>在创建对象后重写了evaluate()方法，通过该方法的说明文档可知evaluate()方法会解析ognl表达式。</p>
+<p><img src="https://struts.apache.org/maven/struts2-core/apidocs/com/opensymphony/xwork2/util/TextParseUtil.ParsedValueEvaluator.html" alt="官方文档"></p>
+<p>也就是说只要走到<code>parser.evaluate</code>方法中的<code>evaluator.evaluate</code>方法，这里的参数可控就能确定有一个ognl表达式注入漏洞了！</p>
+<p><img src="/2019/01/11/s2-045-调试分析/10.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/11/s2-045-调试分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Bye-2018" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -711,7 +830,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 WisdomTree
+    		&copy; 2019 WisdomTree
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

