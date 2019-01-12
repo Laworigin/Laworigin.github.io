@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>s2-045 调试分析 | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
+  <meta name="description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="s2-045 调试分析">
 <meta property="og:url" content="http://yoursite.com/2019/01/11/s2-045-调试分析/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
-<meta property="og:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
+<meta property="og:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/2.png">
@@ -32,10 +32,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/15.png">
 <meta property="og:image" content="https://struts.apache.org/maven/struts2-core/apidocs/com/opensymphony/xwork2/util/TextParseUtil.ParsedValueEvaluator.html">
 <meta property="og:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/10.png">
-<meta property="og:updated_time" content="2019-01-11T08:24:42.649Z">
+<meta property="og:updated_time" content="2019-01-12T09:47:18.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="s2-045 调试分析">
-<meta name="twitter:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。  ognl表达式基础1、ognl作用  （1）支持对象方法的调用，如">
+<meta name="twitter:description" content="最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/11/s2-045-调试分析/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WisdomTree&#39;s Blog" type="application/atom+xml">
@@ -193,7 +193,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。</p>
+<p>最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。<br><a id="more"></a></p>
 </blockquote>
 <h3 id="ognl表达式基础"><a href="#ognl表达式基础" class="headerlink" title="ognl表达式基础"></a>ognl表达式基础</h3><p>1、ognl作用<br>  （1）支持对象方法的调用，如：<code>(#cmd={&#39;/bin/bash&#39;,&#39;-c&#39;,&#39;whoami&#39;})(#p=new java.lang.ProcessBuilder(#cmd))</code>。<br>  （2）支持类的静态方法的调用和静态属性的访问，如：<code>@java.lang.Runtime@getRuntime().exec(&#39;whoami&#39;)</code>。<br>  （3）支持赋值操作和表达式串联。这使得我们可以利用ognl表达式“编写”一段程序。  </p>
 <p>2、ognl三大要素<br>  （1）上下文（Context对象）<br>在ognl表达式中不可避免的要使用上下文环境这一概念。网上各种官方的解释很多，我在这里就以我的理解来阐述。所谓的上下文环境，我的理解就是一个用于解析并且执行ognl表达式的环境。所有的ognl表达式都需要在上下文环境中才能解析执行。<br>  （2）表达式<br>表达式是ognl的灵魂。所有的取值，赋值，以及我们所构造的payload都是以ognl表达式的形式呈现。这里也简单记录ognl的语法。在ognl中有三个符号经常使用，分别是#,%和$。#符号主要用途有三：访问非根对象（<code>#user.id</code>），用于过滤和投影（<code>books.{?#this.price&gt;35}</code>）以及构造Map（<code>#{&#39;foo1&#39;:&#39;bar1&#39;, &#39;foo2&#39;:&#39;bar2&#39;}</code>）。%符号是用于在标签属性中表明<code>%{}</code>内部的字符串被当作ognl来解析。$符号有两个用途：在国际化资源文件中，引用OGNL表达式、在Struts 2配置文件中，引用OGNL表达式。<br>  （3）根对象<br>根对象可以理解为ognl所面向的对象。ognl表达式对根对象进行操作。以任意一个对象为根，通过OGNL可以访问与这个对象关联的其它对象。</p>
