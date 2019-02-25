@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>laravelv5.7反序列化rce | WisdomTree&#39;s Blog</title>
+  <title>laravelv5.7反序列化rce(CVE-2019-9081) | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="laravel 5.7是一款基于php 7.1.3之上运行的优秀php开发框架。本周对于laravel v5.7进行初步审计学习。发掘到一个laravel核心包中的一个反序列化rce漏洞。只要反序列化的内容可控即可触发该漏洞。但遗憾的是，我没能在laravel框架中找到合适的触发点，因此需要对基于laravel v5.7框架进行二次开发的cms进行再次审计，寻找可控的反序列化点，才能触发该漏洞。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="laravelv5.7反序列化rce">
+<meta property="og:title" content="laravelv5.7反序列化rce(CVE-2019-9081)">
 <meta property="og:url" content="http://yoursite.com/2019/02/21/laravelv5-7反序列化rce/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
 <meta property="og:description" content="laravel 5.7是一款基于php 7.1.3之上运行的优秀php开发框架。本周对于laravel v5.7进行初步审计学习。发掘到一个laravel核心包中的一个反序列化rce漏洞。只要反序列化的内容可控即可触发该漏洞。但遗憾的是，我没能在laravel框架中找到合适的触发点，因此需要对基于laravel v5.7框架进行二次开发的cms进行再次审计，寻找可控的反序列化点，才能触发该漏洞。">
@@ -37,9 +37,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/21/laravelv5-7反序列化rce/20.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/21/laravelv5-7反序列化rce/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/21/laravelv5-7反序列化rce/22.png">
-<meta property="og:updated_time" content="2019-02-21T09:27:43.371Z">
+<meta property="og:updated_time" content="2019-02-25T14:58:04.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="laravelv5.7反序列化rce">
+<meta name="twitter:title" content="laravelv5.7反序列化rce(CVE-2019-9081)">
 <meta name="twitter:description" content="laravel 5.7是一款基于php 7.1.3之上运行的优秀php开发框架。本周对于laravel v5.7进行初步审计学习。发掘到一个laravel核心包中的一个反序列化rce漏洞。只要反序列化的内容可控即可触发该漏洞。但遗憾的是，我没能在laravel框架中找到合适的触发点，因此需要对基于laravel v5.7框架进行二次开发的cms进行再次审计，寻找可控的反序列化点，才能触发该漏洞。">
 <meta name="twitter:image" content="http://yoursite.com/2019/02/21/laravelv5-7反序列化rce/1.png">
   
@@ -184,7 +184,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      laravelv5.7反序列化rce
+      laravelv5.7反序列化rce(CVE-2019-9081)
     </h1>
   
 
