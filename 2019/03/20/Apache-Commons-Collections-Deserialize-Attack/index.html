@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/16.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/17.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/18.png">
-<meta property="og:updated_time" content="2019-03-21T00:49:50.010Z">
+<meta property="og:updated_time" content="2019-03-21T00:57:51.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache Commons Collections Deserialize Attack">
 <meta name="twitter:description" content="java web反序列化开坑之旅！">
@@ -233,7 +233,7 @@
 <p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/16.png" alt=""></p>
 <p>在<code>org/apache/commons/collections/keyvalue/TiedMapEntry.java</code>中存在<code>getValue</code>方法，在该方法中调用<code>get</code>方法，而<code>getValue</code>方法在同类的<code>toString</code>方法中被调用。java中的<code>toString</code>方法和php中的<code>__toString</code>方法相同，都是在对象被当作字符串进行操作时自动调用。顺着这条思路继续，我们接下来就应该寻找<code>TiedMapEntry</code>类被当作字符串的场景，或者说寻找存在某个对象调用<code>toString</code>方法。</p>
 <p><img src="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/17.png" alt=""></p>
-<p>在<code>javax/management/BadAttributeValueExpException.java</code>类中可以找到两处<code>toString</code>方法，一处在其构造方法中，另一处就是我所定位的为止。巧合的是，恰好在重写的<code>readObject</code>方法中调用了<code>toString</code>方法。而众所周知，<code>readObject</code>方法可以用于反序列化的触发。至此完整的反序列化pop链已经呼之欲出。</p>
+<p>在<code>javax/management/BadAttributeValueExpException.java</code>类中可以找到两处<code>toString</code>方法，一处在其构造方法中，另一处就是我所定位的为止。巧合的是，恰好在重写的<code>readObject</code>方法中调用了<code>toString</code>方法。而众所周知，<code>readObject</code>方法可以用于反序列化的触发。在这里我们符合<code>System.getSecurityManager() == null</code>这一表达式，这才导致<code>toString</code>方法的执行。至此完整的反序列化pop链已经呼之欲出。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BadAttributeValueExpException.readObject-&gt;</span><br><span class="line">      TiedMapEntry.toString-&gt;</span><br><span class="line">            TiedMapEntry.getValue-&gt;</span><br><span class="line">                  LazyMap.get-&gt;</span><br><span class="line">                        ChainedTransformer.transform-&gt;</span><br><span class="line">                              InvokerTransformer.transform</span><br></pre></td></tr></table></figure>
 <p>在构造具体的POC时需要注意，在<code>BadAttributeValueExpException</code>类中我们需要控制<code>val</code>属性。其实不光光时这里，所有的pop链的构造其本质都是面向属性编程，换句话来说我们可以默认为对象属性可控。但是这里的<code>val</code>属性是私有属性，并不能直接访问赋值，因此我们需要用这种方法来保证属性的可控：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Field valfield = poc.getClass().getDeclaredField(<span class="string">"val"</span>);</span><br><span class="line">valfield.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">valfield.set(poc, entry);</span><br></pre></td></tr></table></figure>
