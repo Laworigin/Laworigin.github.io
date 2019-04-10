@@ -6,15 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>WisdomTree&#39;s Blog</title>
+  <title>Spring-messaging SPEL Injection | WisdomTree&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WisdomTree&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Spring Expression Language 是一种强大的表达式语言，在spring开发中经常用到。正是因为其功能足够完备，导致在某些情况下用户可能会从外部注入spel表达式，在服务器上执行非常规操作行为。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-messaging SPEL Injection">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/index.html">
 <meta property="og:site_name" content="WisdomTree&#39;s Blog">
+<meta property="og:description" content="Spring Expression Language 是一种强大的表达式语言，在spring开发中经常用到。正是因为其功能足够完备，导致在某些情况下用户可能会从外部注入spel表达式，在服务器上执行非常规操作行为。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/16.png">
+<meta property="og:updated_time" content="2019-04-10T12:40:31.838Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WisdomTree&#39;s Blog">
+<meta name="twitter:title" content="Spring-messaging SPEL Injection">
+<meta name="twitter:description" content="Spring Expression Language 是一种强大的表达式语言，在spring开发中经常用到。正是因为其功能足够完备，导致在某些情况下用户可能会从外部注入spel表达式，在服务器上执行非常规操作行为。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WisdomTree&#39;s Blog" type="application/atom+xml">
   
@@ -150,16 +171,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Spring-messaging-SPEL-Injection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Spring-messaging-SPEL-Injection" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/Spring-messaging-SPEL-Injection/">Spring-messaging SPEL Injection</a>
+    <h1 class="article-title" itemprop="name">
+      Spring-messaging SPEL Injection
     </h1>
   
 
@@ -173,321 +192,102 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Spring Expression Language 是一种强大的表达式语言，在spring开发中经常用到。正是因为其功能足够完备，导致在某些情况下用户可能会从外部注入spel表达式，在服务器上执行非常规操作行为。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/04/09/Spring-messaging-SPEL-Injection/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/Spring-messaging-SPEL-Injection/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一个幸运的小孩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/06/一个幸运的小孩/">一个幸运的小孩</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/06/一个幸运的小孩/" class="archive-article-date">
-  	<time datetime="2019-04-06T11:15:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>问山之高，无物与其比肩。问海之阔，无人知其方圆。吾辈生于山海之间，自当谦卑谨慎，砥砺前行。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/04/06/一个幸运的小孩/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活随笔//" class="article-tag-list-link color5">生活随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/06/一个幸运的小孩/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Fastjson-Deserialize-Vulnerability" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/28/Fastjson-Deserialize-Vulnerability/">Fastjson Deserialize Vulnerability</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/28/Fastjson-Deserialize-Vulnerability/" class="archive-article-date">
-  	<time datetime="2019-03-27T23:55:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>fastjson反序列化也是很经典的反序列化漏洞，最近也在学习关于fastjson反序列化漏洞的三种利用方式。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/03/28/Fastjson-Deserialize-Vulnerability/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/28/Fastjson-Deserialize-Vulnerability/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Deserialize-RCE-JNDI-Inject" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/Spring-Deserialize-RCE-JNDI-Inject/">Spring Deserialize RCE(JNDI Inject)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/23/Spring-Deserialize-RCE-JNDI-Inject/" class="archive-article-date">
-  	<time datetime="2019-03-23T06:55:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Spring-tx包反序列化漏洞，通过JNDI服务引入rmi远程调用类，最终导致rce。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/03/23/Spring-Deserialize-RCE-JNDI-Inject/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/23/Spring-Deserialize-RCE-JNDI-Inject/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Apache-Commons-Collections-Deserialize-Attack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/">Apache Commons Collections Deserialize Attack</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/" class="archive-article-date">
-  	<time datetime="2019-03-20T11:21:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>java web反序列化开坑之旅！</p>
+<p>Spring Expression Language 是一种强大的表达式语言，在spring开发中经常用到。正是因为其功能足够完备，导致在某些情况下用户可能会从外部注入spel表达式，在服务器上执行非常规操作行为。<br><a id="more"></a></p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/#more">more >></a>
-        
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>SPEL主要有三种用法：在<code>@Value</code>注解中使用、在XML中配置、在代码块中使用<code>Expression</code>。在漏洞挖掘中一般关注在代码块中使用<code>Expression</code>的这种形式。前两种是在大部分情况下是不可控的。</p>
+<p>常见的spel漏洞场景如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建解析器</span></span><br><span class="line">ExpressionParser parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line"><span class="comment">//表达式放置</span></span><br><span class="line">Expression exp = parser.parseExpression(<span class="string">"表达式"</span>);</span><br><span class="line"><span class="comment">//执行表达式，默认容器是spring本身的容器：ApplicationContext</span></span><br><span class="line">Object value = exp.getValue();</span><br></pre></td></tr></table></figure>
+<p>或者是使用虚拟容器的场景：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">StandardEvaluationContext ctx = <span class="keyword">new</span> StandardEvaluationContext();</span><br><span class="line"><span class="comment">//向容器内添加bean</span></span><br><span class="line">BeanA beanA = <span class="keyword">new</span> BeanA();</span><br><span class="line">ctx.setVariable(<span class="string">"bean_id"</span>, beanA);</span><br><span class="line"></span><br><span class="line"><span class="comment">//setRootObject并非必须；一个EvaluationContext只能有一个RootObject，引用它的属性时，可以不加前缀</span></span><br><span class="line">ctx.setRootObject(XXX);</span><br><span class="line"></span><br><span class="line"><span class="comment">//getValue有参数ctx，从新的容器中根据SpEL表达式获取所需的值</span></span><br><span class="line">Object value = exp.getValue(ctx);</span><br></pre></td></tr></table></figure>
+<p>不论是哪一种场景都绕不开调用<code>getValue</code>或者<code>setValue</code>方法来触发spel表达式。就从这点来看的话，其实和ognl表达式注入漏洞很像，都是将解析表达式和执行表达式分开，先解析后执行。最后也是通过<code>getValue</code>或者<code>setValue</code>执行表达式。</p>
+<p>1、界定符</p>
+<p>SPEL使用<code>#{.....}</code>作为界定符，其中的内容被认定为是spel表达式。可以在表达式中引用其他对象、对象中的属性以及调用对象的方法。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">引用其他对象：#&#123;obj&#125;</span><br><span class="line"></span><br><span class="line">引用其他对象的属性：#&#123;obj.attr&#125;</span><br><span class="line"></span><br><span class="line">调用对象方法：#&#123;obj.toString()&#125;</span><br></pre></td></tr></table></figure>
+<p>2、赋值表达式</p>
+<p>SPEl允许自定义变量，通过<code>#</code>符号实现变量声明，如：<code>#aaa=&#39;2222&#39;</code>，就在上下文环境中声明一个变量名为<code>aaa</code>的变量。</p>
+<p>3、类相关表达式</p>
+<p>在SPEL表达式中使用<code>T(Type)</code>方法来表示类的实例，这里的<code>Type</code>必须是类的全名，只有在<code>java.lang</code>包中的类可以直接声明。使用类相关的表达式可以调用类中的静态方法和静态属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(java.lang.Runtime)  <span class="comment">//引用java.lang.Runtime对象</span></span><br></pre></td></tr></table></figure>
+<p>除了使用<code>T(Type)</code>方法之外，SPEL还支持<code>new</code>关键字，也就是说可以在SPEL表达式中使用<code>new</code>关键字实例化一个对象。但是也有一个前提条件，除了基类和基础数据结构之外都必须使用完全限定的类名。</p>
+<p>SPEL工作流程简述：</p>
+<p>1.定义解析器<code>ExpressionParser</code>，在spring中默认是<code>SpelExpressionParser</code>。</p>
+<p>2.使用<code>ExpressionParser</code>接口的<code>parseExpression</code>方法来解析表达式得到<code>Expression</code>对象。</p>
+<p>3.定义上下文对象，SPEL使用<code>EvaluationContext</code>接口来表示上下文对象，这一步是可选的。</p>
+<p>4.最后根据表达式进行一个求值的行为。</p>
+<p>SPEL主要接口：</p>
+<ul>
+<li><p>ExpressionParser：解析器接口</p>
+</li>
+<li><p>EvaluationContext：上下文环境接口</p>
+</li>
+<li><p>Expression：表达式对象接口</p>
+</li>
+</ul>
+<p>这里还需要提一下<code>EvaluationContext</code>接口，SPEL中提供两种<code>EvaluationContext</code>接口，分别是<code>SimpleEvaluationContext</code>和<code>StandardEvaluationContext</code>。二者的区别在于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleEvaluationContext：针对不需要SpEL语言语法的全部范围并且应该受到有意限制的表达式类别，公开SpEL语言特性和配置选项的子集。</span><br><span class="line">StandardEvaluationContext：公开全套SpEL语言功能和配置选项。您可以使用它来指定默认的根对象并配置每个可用的评估相关策略。</span><br></pre></td></tr></table></figure>
+<p>简单的说就是<code>SimpleEvaluationContext</code>的功能远远少于<code>StandardEvaluationContext</code>，其不支持java类型引用、构造函数和<code>bean</code>的引用。可以将其视为一个自带的沙盒，正是因为其的纯粹性，就导致很多漏洞的修复方式就是将上下文环境接口改为<code>SimpleEvaluationContext</code>。</p>
+<h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>从<code>github</code>上拉取<code>gs-messaging-stomp-websocket</code>项目进行调试分析。修改<code>app.js</code>文件中的<code>connect</code>函数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> header  = &#123;<span class="string">"selector"</span>:<span class="string">"T(java.lang.Runtime).getRuntime().exec('open /Applications/Calculator.app/')"</span>&#125;;</span><br><span class="line">    <span class="keyword">var</span> socket = <span class="keyword">new</span> SockJS(<span class="string">'/gs-guide-websocket'</span>);</span><br><span class="line">    stompClient = Stomp.over(socket);</span><br><span class="line">    stompClient.connect(&#123;&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">frame</span>) </span>&#123;</span><br><span class="line">        setConnected(<span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Connected: '</span> + frame);</span><br><span class="line">        stompClient.subscribe(<span class="string">'/topic/greetings'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">greeting</span>) </span>&#123;</span><br><span class="line">            showGreeting(<span class="built_in">JSON</span>.parse(greeting.body).content);</span><br><span class="line">        &#125;,header);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动服务点击<code>Connect</code>建立<code>websocket</code>连接。从代码层面我们可以看到调用到<code>spring-messaging-5.0.4.RELEASE-sources.jar!/org/springframework/messaging/support/ExecutorSubscribableChannel.java</code>文件中的<code>run</code>方法，并且获取到我们从前端传入的<code>headers</code>数据。</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/1.png" alt=""></p>
+<p>跟入<code>this.messageHandler.handleMessage</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/2.png" alt=""></p>
+<p>跟入<code>this.subscriptionRegistry.registerSubscription</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/3.png" alt=""></p>
+<p>继续跟入<code>addSubscriptionInternal</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/4.png" alt=""></p>
+<p>至于为什么要按照这种步骤走流程，其实也简单，就是因为我们可控参数在变量<code>message</code>中，那就自然需要跟踪<code>message</code>的走向。继续步入<code>addSubscriptionInternal</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/5.png" alt=""></p>
+<p>到这里就是重头戏了，在这个函数中很明显有解析SPEL表达式的行为，这里的解析器接口就是<code>Spring</code>默认的<code>SpelExpressionParser</code>。前提就是需要在传入的<code>headers</code>中存在<code>selector</code>变量才会将其视为SPEL表达式并解析，这也是我们先前修改<code>app.js</code>的原因。到这里已经完成了SPEL表达式注入漏洞挖掘的第一步：寻找SPEL表达式可控场景。但是如果仅仅只是表达式解析的话是远远不够的，我们还需要找到一个场景使得解析表达式生成的<code>Expression</code>对象调用<code>getValue</code>方法才能执行SPEL表达式。因此我们继续跟踪<code>message</code>变量，步入<code>addSubscription</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/6.png" alt=""></p>
+<p>继续跟入<code>info.addSubscription</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/7.png" alt=""></p>
+<p>步入<code>subs.add</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/8.png" alt=""></p>
+<p>终于！我们看到生成的<code>Expression</code>被赋值给<code>this.selectorExpression</code>属性。到这里貌似是不符合我们寻找<code>getValue</code>方法。但是我们在浏览器里发起的是<code>websocket</code>连接，这就表示这次存储的变量并不会立刻消失，并且很有可能在接下来的请求中用到。我们尝试从浏览器中随便发送一些字符到服务器端：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/9.png" alt=""></p>
+<p>这里的调用栈特别长，前面主要是在实现<code>send</code>这一行为，我们直接定位到<code>getMessageHandler</code>方法。这里的<code>message</code>就是我们在建立<code>websocket</code>请求之后，再次请求时发送的一些信息，跟入<code>this.messageHandler.handleMessage</code>：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/10.png" alt=""></p>
+<p>跟入<code>handleMessageInternal</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/11.png" alt=""></p>
+<p>继续跟踪<code>message</code>走向，步入<code>sendMessageToSubscribers</code>：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/12.png" alt=""></p>
+<p>跟入<code>this.subscriptionRegistry.findSubscriptions</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/13.png" alt=""></p>
+<p>接下来连续步入<code>findSubscriptionsInternal</code>中的<code>filterSubscriptions</code>方法：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/14.png" alt=""></p>
+<p>从这张图中就能看到存在一个SPEL表达式执行的利用点，也就是说如果<code>expression</code>可控，那么这里就存在漏洞。我们回到203行的<code>info.getSubscription</code>方法，通过这个方法获取刚才建立连接时的数据，这里就包括我们之前在<code>app.js</code>中修改的<code>selector</code>。继续向下走到207行的<code>sub.getSelectorExpression</code>方法，跟入：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/15.png" alt=""></p>
+<p>在这里取出我们在建立<code>websocket</code>时所设置的<code>selectorExpression</code>，也就是SPEL表达式。再次回到<code>filterSubscriptions</code>方法，向下走：</p>
+<p><img src="/2019/04/09/Spring-messaging-SPEL-Injection/16.png" alt=""></p>
+<p>这里就看得更加清晰，<code>expression</code>是我们传入的SPEL表达式，而<code>context</code>是标准的<code>StandardEvaluationContext</code>，实现全套SPEL语言功能。至此SPEL表达式注入漏洞产生！！</p>
+<p>官方的修复方案是将上下文环境接口<code>StandardEvaluationContext</code>替换为<code>SimpleEvaluationContext</code>，保证其在一个相对安全的环境中实现SPEL的安全使用。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过这个漏洞分析使得我对于java审计思路这一块有了一些启发。我越来越觉得，在java中漏洞的发掘其本质并不是漏洞本身而是功能和场景的不当结合。我认为这些漏洞的本质都是合适的功能点在不合适的场景下的不当使用所产生的。回头看这个漏洞，设计初衷并没错，确实需要通过SPEL来解析<code>selector</code>，是一个合理的功能点。那么如何从一个合理的功能点入手寻找到不合理的利用方式，就是一个代码审计人员应该做的。</p>
+<p>整个漏洞的挖掘难点就在于，如何能够找到这个<code>selector</code>的输入点呢？其实有两种方法，一方面通读组件源码，另一方面就是参考官方文档。前者成本太高，还是乖乖阅读文档来的轻松。这个漏洞的方法调用栈其实很深，如果单纯从代码的角度去发掘，难度极大。这时候找到一个合适的场景就显得尤为重要。这也侧面体现java审计的思路其实要从文档入手。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -507,16 +307,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/20/Apache-Commons-Collections-Deserialize-Attack/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/09/Spring-messaging-SPEL-Injection/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/06/一个幸运的小孩/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一个幸运的小孩</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -536,389 +395,14 @@
 
 
 
-
-  
-    <article id="post-laravelv5-7反序列化rce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/21/laravelv5-7反序列化rce/">laravelv5.7反序列化rce(CVE-2019-9081)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/21/laravelv5-7反序列化rce/" class="archive-article-date">
-  	<time datetime="2019-02-21T09:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>laravel 5.7是一款基于php 7.1.3之上运行的优秀php开发框架。本周对于laravel v5.7进行初步审计学习。发掘到一个laravel核心包中的一个反序列化rce漏洞。只要反序列化的内容可控即可触发该漏洞。但遗憾的是，我没能在laravel框架中找到合适的触发点，因此需要对基于laravel v5.7框架进行二次开发的cms进行再次审计，寻找可控的反序列化点，才能触发该漏洞。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/02/21/laravelv5-7反序列化rce/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/21/laravelv5-7反序列化rce/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-s2-045-调试分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/11/s2-045-调试分析/">s2-045 调试分析</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/11/s2-045-调试分析/" class="archive-article-date">
-  	<time datetime="2019-01-11T05:41:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>最近刚放假，身边好多小伙伴都没放，刚好有时间搞搞技术。想来我过完年也要面对找工作的难题，看看我目前居然还没有分析过struct2的漏洞，心里发慌。赶紧趁着这两天分析分析，顺便学习ognl表达式。就以当年很火的s2-045为例。在调试分析的时候参照了很多师傅的分析文章，但是在我看来大部分都不够细致，便自己写一篇文章作为学习笔记。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2019/01/11/s2-045-调试分析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/11/s2-045-调试分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Bye-2018" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/31/Bye-2018/">Bye 2018</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/31/Bye-2018/" class="archive-article-date">
-  	<time datetime="2018-12-31T02:26:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>时间犹如白驹过隙，不可望，不可追。<br></p></blockquote>
-        
-          <a class="article-more-a" href="/2018/12/31/Bye-2018/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活随笔//" class="article-tag-list-link color5">生活随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/31/Bye-2018/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-laravel路由解析分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/28/laravel路由解析分析/">laravel路由解析分析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/28/laravel路由解析分析/" class="archive-article-date">
-  	<time datetime="2018-12-28T08:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>这段时间对laravel的路由解析流程很感兴趣，想要看看在整个路由解析流程中是否存在薄弱环节或者是可利用点。通过网上现有的分析文章对照着自己本地的环境调试了一波。感觉laravel在路由解析这块的安全性确实很高。（也有可能是因为没有太多输入点。。。）等考完试还要继续看看，现在先把我理解的记录下来，以便之后复习使用。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/12/28/laravel路由解析分析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/28/laravel路由解析分析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js原型链污染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/11/js原型链污染/">js原型链污染</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/11/js原型链污染/" class="archive-article-date">
-  	<time datetime="2018-09-11T12:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>前两天做了hackit的js原型链污染题目，算是首次接触，写一个笔记，做一个知识扩展。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/09/11/js原型链污染/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/学习笔记//" class="article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/11/js原型链污染/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -941,8 +425,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
